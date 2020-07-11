@@ -3,8 +3,8 @@
     <nav class="nav-extended purple lighten-3">
         <div class="nav-wrapper">
             <ul id="nav-mobile" class="right">
-                <li><a href="galeria.php">Galeria</a></li>
-                <li><a href="cadastrar.php">Cadastrar</a></li>
+                <li><a href="/">Galeria</a></li>
+                <li><a href="/novo">Cadastrar</a></li>
             </ul>
         </div>
     <div class="nav-header center">
@@ -20,7 +20,7 @@
 </nav>
     <!--Campo Input -->
     <div class="row">
-    <form action="inserirfilme.php" method="POST">
+    <form method="POST" enctype="multipart/form-data">
     <div class="col s6 offset-s3">
     <div class="card">
     <div class="card-content">
@@ -56,13 +56,13 @@
     <div class="file-field input-field">
     <div class="btn purple lighten-2 black-text">
     <span>Capa</span>
-    <input type="file"></div>
+    <input type="file" name="poster_file"></div>
     <div class="file-path-wrapper">
     <input class="file-path validate" type="text" name="poster">
     </div>
 </div>
     <div class="card-action">
-        <a class="btn waves-effect waves-light grey" href="galeria.php">Cancelar</a>
+        <a class="btn waves-effect waves-light grey" href="/">Cancelar</a>
         <button type="submit" class="waves-effect waves-light btn purple">Confirmar</button>
                         </div>
                     </div>
