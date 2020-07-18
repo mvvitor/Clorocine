@@ -56,7 +56,7 @@
     <div class="file-field input-field">
     <div class="btn purple lighten-2 black-text">
     <span>Capa</span>
-    <input type="file" name="poster_file"></div>
+    <input type="file" name="poster_file" accept="image/*"></div>
     <div class="file-path-wrapper">
     <input class="file-path validate" type="text" name="poster">
     </div>

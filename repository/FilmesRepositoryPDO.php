@@ -11,11 +11,12 @@ class FilmesRepositoryPDO{
     }
 
     public function listarTodos(): array{
-        $bd = Conexao::criar();
         $filmesLista = array();
 
         $sql = "SELECT * FROM filmes";
         $filmes = $this->conexao->query($sql);
+        if (!$filmes) return false;
+        
         while ($filme = $filmes->fetchObject()) {
             array_push($filmesLista, $filme);
         }
@@ -31,6 +32,18 @@ class FilmesRepositoryPDO{
         $stmt->bindValue(':poster', $filme->poster, PDO::PARAM_STR);
 
        return $stmt->execute();
+
+    }
+
+    public function favoritar(int $id){
+        $sql = "UPADATE filmes SET favorito = NOT favorito WHERE id=:id";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        if($stmt->execute()){
+            return "ok";
+        }else{
+            return "erro";
+        }
 
     }
 }

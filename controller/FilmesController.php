@@ -34,13 +34,25 @@ class FilmesController{
                 $posterDir = "imagens/posters/";
                 $posterPath = $posterDir . basename( $file ["poster_file"]["tmp_name"]);
                 $posterTmp = $file ["poster_file"]["tmp_name"];
-                if (move_uploaded_file($posterTmp, $posterPath)){
-                        return $posterPath;
-                }else{
-                        return false;
-                };
+                
+                
+                $image = new SimpleImage();
+                $image->load($posterTmp);
+                $image->resize(200, 300);
+                $image->save($posterPath);
+                return $posterPath;
+        }
+        
+        public function favorite(int $id){
+                $filmesRepository = new FilmesRepositoryPDO();
+                $result = ['success' => $filmesRepository->favoritar($id)];
+                header('Content-type: application/json');
+                echo json_encode($result);
+
+
         }
 }
+
 
 
 ?>
