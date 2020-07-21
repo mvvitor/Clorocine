@@ -7,22 +7,23 @@ class FilmesRepositoryPDO{
     private $conexao;
 
     public function __construct(){
-        $this->conexao = Conexao::criar();
+        $this->conexao =  Conexao::criar();
     }
 
-    public function listarTodos(): array{
+    public function listarTodos(){
         $filmesLista = array();
 
         $sql = "SELECT * FROM filmes";
         $filmes = $this->conexao->query($sql);
         if (!$filmes) return false;
         
-        while ($filme = $filmes->fetchObject()) {
+        while ($filme = $filmes->fetchObject()){
             array_push($filmesLista, $filme);
         }
         return $filmesLista;
     }
-    public function salvar($filme): bool{
+
+    public function salvar($filme):bool{
         $sql = "INSERT INTO filmes (titulo, poster, sinopse, nota) 
         VALUES (:titulo, :poster, :sinopse, :nota)";
         $stmt = $this->conexao->prepare($sql);
@@ -31,12 +32,11 @@ class FilmesRepositoryPDO{
         $stmt->bindValue(':nota', $filme->nota, PDO::PARAM_STR);
         $stmt->bindValue(':poster', $filme->poster, PDO::PARAM_STR);
 
-       return $stmt->execute();
-
+        return $stmt->execute();
     }
 
     public function favoritar(int $id){
-        $sql = "UPADATE filmes SET favorito = NOT favorito WHERE id=:id";
+        $sql = "UPDATE filmes SET favorito = NOT favorito WHERE id=:id";
         $stmt = $this->conexao->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         if($stmt->execute()){
@@ -44,6 +44,17 @@ class FilmesRepositoryPDO{
         }else{
             return "erro";
         }
-
     }
+
+    public function delete(int $id){
+        $sql = "DELETE FROM filmes WHERE id=:id";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        if($stmt->execute()){
+            return "ok";
+        }else{
+            return "erro";
+        }
+    }
+
 }

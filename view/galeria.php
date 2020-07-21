@@ -10,24 +10,24 @@ $filmes = $controller->index();
 ?>
 
 <body>
-    <nav class="nav-extended purple lighten-3">
-        <div class="nav-wrapper">
-            <ul id="nav-mobile" class="right">
-                <li class="active"><a href="/">Galeria</a></li>
-                <li><a href="/novo">Cadastrar</a></li>
-            </ul>
-        </div>
-        <div class="nav-header center">
-            <h1>CLOROCINE</h1>
-        </div>
-        <div class="nav-content">
-            <ul class="tabs tabs-transparent purple darken-1">
-                <li class="tab"><a class="active" href="#test1">Todos</a></li>
-                <li class="tab"><a href="#test2">Assistidos</a></li>
-                <li class="tab"><a href="#test3">Favoritos</a></li>
-            </ul>
-        </div>
-    </nav>
+
+  <nav class="nav-extended purple lighten-3">
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="right">
+        <li class="active"><a href="/">Galeria</a></li>
+        <li><a href="/novo">Cadastrar</a></li>
+      </ul>
+    </div>
+    <div class="nav-header center">
+      <h1>CLOROCINE</h1>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent purple darken-1">
+        <li class="tab"><a class="active" href="#test1">Todos</a></li>
+        <li class="tab"><a href="#test3">Favoritos</a></li>
+      </ul>
+    </div>
+  </nav>
 
     <div class="container">
         <div class="row">
@@ -54,10 +54,14 @@ $filmes = $controller->index();
                 </div>
             <?php endforeach ?>
         </div>
+
     </div>
 
     <?= Mensagem::mostrar(); ?>
 
+  </div>
+
+  <?= Mensagem::mostrar(); ?>
 
     <script>
        document.querySelectorAll(".btn-fav").forEach(btn => {
@@ -80,6 +84,7 @@ $filmes = $controller->index();
         });
     }); 
     </script>
+
 </body>
 
 
